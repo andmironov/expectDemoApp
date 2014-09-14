@@ -1,0 +1,10 @@
+{
+  "name": "Apparat",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-autoprefixer": "^1.0.0",
+    "grunt-contrib-less": "~0.11.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

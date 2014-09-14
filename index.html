@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Expect</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+    <script src="./js/query-1.10.0.min.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Expect</a>
+		</div>
+	</div>
+	<div class="expectApp">
+		<div class="wrap">
+			<div class="wrap_inner">
+				<button class="btn btn-large btn-block btn-primary showForm" type="button">Новое ожидание</button>
+			</div>
+			<form action="#">
+				<h3>Новое ожидание</h3>
+
+				<input type="hidden" name="user_name" value="John">
+
+				<fieldset>
+					<textarea name="prediction_text" placeholder="Текст"></textarea>
+				</fieldset>
+
+				<h4>Когда</h4>
+				<fieldset>
+					<label class="radio">
+					  <input type="radio" name="prediction_date" value="week" checked>
+					  Через неделю
+					</label>
+					<label class="radio">
+					  <input type="radio" name="prediction_date" value="month">
+					  	Через месяц
+					</label>
+					<label class="radio">
+					  <input type="radio" name="prediction_date" value="year">
+					  	Через год
+					</label>
+				</fieldset>
+
+				<h4>Тип</h4>
+				<fieldset>
+					<label class="radio">
+					  <input type="radio" name="prediction_type" value="public" checked>
+					  Публичный
+					</label>
+					<label class="radio">
+					  <input type="radio" name="prediction_type" value="private">
+					  Приватный
+					</label>
+				</fieldset>
+
+				<div class="form-actions">
+				  <button class="btn btn-large btn-block btn-primary" type="submit">Добавить</button>
+				</div>
+			</form>
+
+			<ul class="expectations">
+				<li>
+					
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+</body>
+</html>
