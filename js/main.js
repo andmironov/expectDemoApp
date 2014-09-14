@@ -3,18 +3,21 @@ var Expect = function(options) {
 	
 	var currentFormData = {},
 		wrapper = options.wrapper || $(".expectApp"),
-		dataObject = {},
 		targetElement = wrapper.find("ul.expectations"),
 		localStorageItemName = "expectApp",
 		self = this;
 
 
+	this.init = function() {
+		this.dataObject = Array();
+	}
+
 	wrapper.find("form").on("submit", function(event){
 		event.preventDefault();
 
   		currentFormData = $(this).serializeArray();
-  		populateDataObject(dataObject, currentFormData);
-  		saveToLocalStorage(dataObject, localStorageItemName);
+		populateDataObject(currentFormData);
+  		//saveDataToLocalStorage(localStorageItemName);
 	});
 
 	wrapper.find(".showForm").on("click", function(event){
@@ -24,21 +27,43 @@ var Expect = function(options) {
 		$(this).hide();
 	});
 
-	var populateDataObject = function(dataObject, currentFormData) {
+	var populateDataObject = function(currentFormData) {
+	
+		var newObject = {};
+		currentFormData.forEach(function(item){
+			newObject[item.name] = item.value;
+  		});
 
+		self.dataObject.push(newObject);
+	
 	}
 
 	var showData = function(dataObject, targetElement) {
-
+		dataObject.forEach( function(item){
+			targetElement.append(
+				"<li>" +
+				"<h5 class='user_name'>" +
+				item.user_name +
+				"</h5>"
+			)
+		});
 	}
 
-	var saveToLocalStorage = function(dataObject, localStorageItemName) {
-		localStorage.setItem( localStorageItemName, dataObject );
+	var saveDataToLocalStorage = function(localStorageItemName) {
+		localStorage.setItem(localStorageItemName, self.dataObject);
 	}
 
-
+	var getDataFromLocalStorage = function(localStorageItemName) {
+		if(localStorage.getItem(localStorageItemName)) {
+			return localStorage.getItem(localStorageItemName);
+		} else {
+			return new Array();
+		}
+	}
 }
 
 var expectApp = new Expect({
 	"wrapper" : $(".expectApp")
 });
+expectApp.init();
+
