@@ -9,7 +9,7 @@ var Expect = function(options) {
 
 
 	this.init = function() {
-		this.dataObject = Array();
+		this.dataObject = getDataFromLocalStorage(localStorageItemName);
 	}
 
 	wrapper.find("form").on("submit", function(event){
@@ -17,7 +17,9 @@ var Expect = function(options) {
 
   		currentFormData = $(this).serializeArray();
 		populateDataObject(currentFormData);
-  		//saveDataToLocalStorage(localStorageItemName);
+  		saveDataToLocalStorage(localStorageItemName);
+
+  		showData(targetElement);
 	});
 
 	wrapper.find(".showForm").on("click", function(event){
@@ -34,19 +36,23 @@ var Expect = function(options) {
 			newObject[item.name] = item.value;
   		});
 
-		self.dataObject.push(newObject);
+		self.dataObject = newObject;
 	
 	}
 
-	var showData = function(dataObject, targetElement) {
-		dataObject.forEach( function(item){
+	var showData = function(targetElement) {
+		
+
 			targetElement.append(
 				"<li>" +
 				"<h5 class='user_name'>" +
-				item.user_name +
-				"</h5>"
-			)
-		});
+				self.dataObject.user_name +
+				"</h5>" +
+				"<p>" +
+				self.dataObject.prediction_text +
+				"</p>"
+			);
+	
 	}
 
 	var saveDataToLocalStorage = function(localStorageItemName) {
